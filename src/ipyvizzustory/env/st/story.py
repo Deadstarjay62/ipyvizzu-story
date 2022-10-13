@@ -43,7 +43,7 @@ class Story(StoryLib):
 
         if any([not isinstance(width, int), not isinstance(height, int)]):
             raise ValueError("width and height should be in pixels as int")
-        super().set_size(width=str(width) + "px", height=str(height) + "px")
+        super().set_size(width=f"{width}px", height=f"{height}px")
 
     def play(self) -> None:
         """A method for displaying the assembled html code in Streamlit environment."""

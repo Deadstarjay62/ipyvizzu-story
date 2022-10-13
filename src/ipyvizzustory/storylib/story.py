@@ -60,8 +60,7 @@ class Step(dict):
                 animation = DataFilter(animation)
 
             builded_animation = animation.build()
-            common_keys = set(builded_animation).intersection(set(self))
-            if common_keys:
+            if common_keys := set(builded_animation).intersection(set(self)):
                 raise ValueError(f"Animation is already merged: {common_keys}")
             self.update(builded_animation)
 
@@ -165,11 +164,11 @@ class StorySize:
             True if the value is pixel, False otherwise.
         """
 
-        value_is_pixel = False
-        if isinstance(value, str):
-            if value.endswith("px"):
-                value_is_pixel = value[:-2].isnumeric()
-        return value_is_pixel
+        return (
+            value[:-2].isnumeric()
+            if isinstance(value, str) and value.endswith("px")
+            else False
+        )
 
 
 class Story(dict):
