@@ -159,7 +159,7 @@ class TestStoryHtml(TestHtml, unittest.TestCase):
         self.test_dir = os.path.dirname(os.path.realpath(__file__))
 
     def tearDown(self):
-        file_list = glob.glob(self.test_dir + "/.test.*")
+        file_list = glob.glob(f"{self.test_dir}/.test.*")
         for file_path in file_list:
             os.remove(file_path)
 
@@ -172,9 +172,9 @@ class TestStoryHtml(TestHtml, unittest.TestCase):
         """A method for testing Story().export_to_html()."""
 
         with unittest.mock.patch(
-            "ipyvizzustory.storylib.story.uuid.uuid4", return_value=self
-        ):
-            test_html = self.test_dir + "/.test.test_export_to_html.html"
+                "ipyvizzustory.storylib.story.uuid.uuid4", return_value=self
+            ):
+            test_html = f"{self.test_dir}/.test.test_export_to_html.html"
             story = self.get_story()
             story.export_to_html(test_html)
             with open(test_html, "r", encoding="utf8") as file_desc:
